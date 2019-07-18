@@ -6,19 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Techno</title>
     <script src="./vue.min.js"></script>
-   <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Noto+Serif:400,700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="app">
-      <section class="produtos">
-         <div  v-for="produto in produtos" class="produto" :key="produto.id">
-            <img :src="produto.img" :alt="produto.nome" class="produto_img">
-            <div class="produto_info">
-               <span class="produto_preco">{{produto.preco}}</span>
-               <h2 class="produto_titulo">{{produto.nome}}</h2>
-            </div>
-         </div>         
+      <section class="products">
+        <div v-for="product in products" class="product" :key="product.id">
+          <img :src="product.img" :alt="product.nome" class="product_img" />
+          <div class="product_info">
+            <span class="product_price">{{ product.preco }}</span>
+            <h2 class="product_title">{{ product.nome }}</h2>
+          </div>
+        </div>
       </section>
     </div>
 

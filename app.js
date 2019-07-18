@@ -1,16 +1,16 @@
 const vm = new Vue({
   el: "#app",
   data: {
-    produtos: []
+    products: []
   },
   methods: {
-    fetchProdutos() {
+    fetchProducts() {
       fetch("./api/produtos.json")
         .then(res => res.json())
-        .then(json => (this.produtos = json));
+        .then(json => (this.products = json));
     }
   },
   created() {
-    this.fetchProdutos();
+    this.fetchProducts();
   }
 });
