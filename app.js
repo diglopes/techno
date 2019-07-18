@@ -10,6 +10,14 @@ const vm = new Vue({
         .then(json => (this.products = json));
     }
   },
+  filters: {
+    currencySymbol(value) {
+      return value.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+    }
+  },
   created() {
     this.fetchProducts();
   }
