@@ -46,7 +46,7 @@
       </section>
 
       <section class="products">
-        <div v-for="product in products" class="product" :key="product.id" @click="fetchProductDetails(product.id)">
+        <div v-for="product in products" class="product" :key="product.id" @click="openModal(product.id)">
           <img :src="product.img" :alt="product.nome" class="product_img" />
           <div class="product_info">
             <span class="product_price">{{ product.preco | currencySymbol }}</span>

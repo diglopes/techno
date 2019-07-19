@@ -15,6 +15,12 @@ const vm = new Vue({
         .then(res => res.json())
         .then(json => (this.product = json));
     },
+    openModal(id) {
+      this.fetchProductDetails(id);
+      window.scrollTo({
+        top: 0
+      });
+    },
     closeModal({ target, currentTarget }) {
       if (target === currentTarget) this.product = false;
     }
