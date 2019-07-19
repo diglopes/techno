@@ -15,12 +15,13 @@
   <body>
     <div id="app">
 
-      <section class="modal" v-if="product">
+      <section class="modal" v-if="product" @click="closeModal">
         <div class="modal_container">
           <div class="modal_img">
             <img :src="product.img" :alt="product.nome">
           </div>
           <div class="modal_data">
+          <button class="modal_close" @click="product = false">X</button>
             <span class="modal_price">
               {{ product.preco | currencySymbol }}
             </span>

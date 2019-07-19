@@ -14,6 +14,9 @@ const vm = new Vue({
       fetch(`./api/produtos/${id}/dados.json`)
         .then(res => res.json())
         .then(json => (this.product = json));
+    },
+    closeModal({ target, currentTarget }) {
+      if (target === currentTarget) this.product = false;
     }
   },
   filters: {
