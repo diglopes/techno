@@ -2,6 +2,7 @@ body,
 h1,
 h2,
 ul,
+p,
 li {
   padding: 0;
   margin: 0;
@@ -24,7 +25,7 @@ body {
   padding: 0 80px;
 }
 
-/* LISTA PRODUTOS */
+/* PRODUCTS LIST */
 
 .products {
   max-width: 900px;
@@ -58,6 +59,91 @@ body {
 
 /* MODAL */
 
+.modal::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+
 .modal {
-  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 80px;
+}
+
+.modal_container {
+  display: grid;
+  align-items: end;
+  grid-gap: 50px;
+  padding: 0 50px 50px 0;
+  position: relative;
+  background: linear-gradient(to right, transparent 250px, #fff 250px);
+  z-index: 1;
+}
+
+.modal_img {
+  grid-column: 1;
+  margin-top: 50px;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.modal_img img {
+  max-width: 300px;
+  display: block;
+}
+
+.modal_data {
+  grid-column: 2;
+  max-width: 600px;
+}
+
+.modal_title {
+  font-size: 3rem;
+}
+
+.modal_btn {
+  margin-top: 80px;
+  background: #000;
+  cursor: pointer;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  padding: 10px 25px;
+  font-family: "Noto Serif", serif;
+}
+
+.modal_btn:active {
+  background: #808080;
+}
+
+/* REVIEWS */
+
+.reviews {
+  grid-column: 2;
+}
+
+.review {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 20px;
+}
+
+.reviews_subtitle {
+  font-size: 1.75rem;
+}
+
+.review_description {
+  color: rgba(0, 0, 0, 0.7);
+  margin: 20px 0 5px 0;
+}
+
+.review_user {
+  font-weight: bold;
 }
