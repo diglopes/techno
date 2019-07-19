@@ -15,8 +15,33 @@
   <body>
     <div id="app">
 
-      <section class="modal">
-        {{product}}
+      <section class="modal" v-if="product">
+        <div class="modal_container">
+          <div class="modal_img">
+            <img :src="product.img" :alt="product.nome">
+          </div>
+          <div class="modal_data">
+            <span class="modal_price">
+              {{ product.preco | currencySymbol }}
+            </span>
+            <h2 class="modal_title">
+              {{product.nome}}
+            </h2>
+            <p class="modal_description">
+              {{product.descricao}}
+            </p>
+            <button class="modal_btn">Adicionar Item</button>
+          </div>
+          <div class="reviews">
+            <h2 class="reviews_subtitle">Avaliações</h2>
+            <ul>
+              <li v-for="avaliacao in product.avaliacoes" class="review">
+                <p class="review_description">{{avaliacao.descricao}}</p>
+                <p class="review_user">{{avaliacao.nome}} | {{avaliacao.estrelas}}</p>
+              </li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <section class="products">
