@@ -18,6 +18,10 @@ const vm = new Vue({
         .then(res => res.json())
         .then(json => (this.product = json));
     },
+    router() {
+      const hash = document.location.hash.replace("#", "");
+      if (hash) this.fetchProductDetails(hash);
+    },
     openModal(id) {
       this.fetchProductDetails(id);
       window.scrollTo({
@@ -71,6 +75,14 @@ const vm = new Vue({
     }
   },
   watch: {
+    product() {
+      const { nome, id } = this.product;
+      const title = nome ? `Techno - ${nome}` : null;
+      const hash = id || "";
+
+      document.title = title || "Techno";
+      history.pushState(null, null, `#${hash}`);
+    },
     shoppingCart() {
       window.localStorage.shoppingCart = JSON.stringify(this.shoppingCart);
     }
@@ -78,5 +90,6 @@ const vm = new Vue({
   created() {
     this.fetchProducts();
     this.checkLocalStorage();
+    this.router();
   }
 });
