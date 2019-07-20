@@ -3,7 +3,9 @@ const vm = new Vue({
   data: {
     products: [],
     product: false,
-    shoppingCart: []
+    shoppingCart: [],
+    notificationMessage: "",
+    notificationActive: false
   },
   methods: {
     fetchProducts() {
@@ -22,13 +24,18 @@ const vm = new Vue({
         top: 0
       });
     },
+    closeModal({ target, currentTarget }) {
+      if (target === currentTarget) this.product = false;
+    },
     addToCart() {
       const { id, nome, preco } = this.product;
       this.product.estoque--;
       this.shoppingCart.push({ id, nome, preco });
+      this.toggleNotification(`${nome} adicionado ao carrinho`);
     },
-    removeItemFromCart(index) {
+    removeItemFromCart(index, nome) {
       this.shoppingCart.splice(index, 1);
+      this.toggleNotification(`${nome} removido do carrinho`);
     },
     checkLocalStorage() {
       const { shoppingCart } = window.localStorage;
@@ -36,8 +43,12 @@ const vm = new Vue({
         this.shoppingCart = JSON.parse(shoppingCart);
       }
     },
-    closeModal({ target, currentTarget }) {
-      if (target === currentTarget) this.product = false;
+    toggleNotification(message) {
+      this.notificationMessage = message;
+      this.notificationActive = true;
+      setTimeout(() => {
+        this.notificationActive = false;
+      }, 1200);
     }
   },
   filters: {

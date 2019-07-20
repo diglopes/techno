@@ -21,7 +21,7 @@
         <ul>
           <li v-for="(item, index) in shoppingCart">
             <p>{{item.nome}}</p>
-            <button @click="removeItemFromCart(index)">X</button>
+            <button @click="removeItemFromCart(index, item.nome)">X</button>
           </li>
         </ul>
       </header>
@@ -65,6 +65,10 @@
           </div>
         </div>
       </section>
+
+      <div class="notification" :class="{active: notificationActive}">
+        <p class="notification_message">{{notificationMessage}}</p>
+      </div>
 
     </div>
 

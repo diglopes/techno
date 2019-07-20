@@ -205,3 +205,40 @@ body {
 .review_user {
   font-weight: bold;
 }
+
+/* NOTIFICATION */
+
+.notification {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  text-align: center;
+  display: none;
+}
+
+.notification_message {
+  background: #fff;
+  display: inline-block;
+  padding: 20px 40px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.notification.active {
+  display: block;
+  animation: fadeInDown forwards 0.3s;
+}
+
+@keyframes fadeInDown {
+  from {
+    transform: translate3d(0, -30px, 0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
