@@ -15,6 +15,28 @@
   <body>
     <div id="app">
 
+      <header class="header">
+        <img src="./assets/techno.svg" alt="Techno" class="logo">
+        <div class="shopping_cart">{{shoppingCartOverall | currencySymbol}} | {{shoppingCart.length}}</div>
+        <ul>
+          <li v-for="(item, index) in shoppingCart">
+            <p>{{item.nome}}</p>
+            <button @click="removeItemFromCart(index)">X</button>
+          </li>
+        </ul>
+      </header>
+      
+
+      <section class="products">
+        <div v-for="product in products" class="product" :key="product.id" @click="openModal(product.id)">
+          <img :src="product.img" :alt="product.nome" class="product_img" />
+          <div class="product_info">
+            <span class="product_price">{{ product.preco | currencySymbol }}</span>
+            <h2 class="product_title">{{ product.nome }}</h2>
+          </div>
+        </div>
+      </section>
+
       <section class="modal" v-if="product" @click="closeModal">
         <div class="modal_container">
           <div class="modal_img">
@@ -25,13 +47,12 @@
             <span class="modal_price">
               {{ product.preco | currencySymbol }}
             </span>
-            <h2 class="modal_title">
-              {{product.nome}}
-            </h2>
-            <p class="modal_description">
-              {{product.descricao}}
-            </p>
-            <button class="modal_btn">Adicionar Item</button>
+            <h2 class="modal_title">{{product.nome}}</h2>                          
+            <p class="modal_description">{{product.descricao}}</p>                          
+            <p>{{product.estoque}}</p>
+            <button v-if="product.estoque" class="modal_btn" @click="addToCart">Adicionar Item</button>
+            <button v-else class="modal_btn sold_off" disabled>Produto Esgotado!</button>
+
           </div>
           <div class="reviews">
             <h2 class="reviews_subtitle">Avaliações</h2>
@@ -45,15 +66,6 @@
         </div>
       </section>
 
-      <section class="products">
-        <div v-for="product in products" class="product" :key="product.id" @click="openModal(product.id)">
-          <img :src="product.img" :alt="product.nome" class="product_img" />
-          <div class="product_info">
-            <span class="product_price">{{ product.preco | currencySymbol }}</span>
-            <h2 class="product_title">{{ product.nome }}</h2>
-          </div>
-        </div>
-      </section>
     </div>
 
     <script src="./app.js"></script>

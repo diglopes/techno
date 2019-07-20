@@ -25,6 +25,35 @@ body {
   padding: 0 80px;
 }
 
+/* HEADER */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.logo {
+  width: 80px;
+}
+
+.shopping_cart::after {
+  content: "";
+  display: inline-block;
+  background: url("./assets/carrinho.svg") no-repeat center center;
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+}
+
+.shopping_cart {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
 /* PRODUCTS LIST */
 
 .products {
@@ -130,6 +159,10 @@ body {
   font-size: 1rem;
   padding: 10px 25px;
   font-family: "Noto Serif", serif;
+}
+
+.modal_btn.sold_off {
+  background: #808080;
 }
 
 .modal_btn:active {
