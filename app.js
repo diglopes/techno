@@ -42,6 +42,13 @@ const vm = new Vue({
       this.shoppingCart.splice(index, 1);
       this.toggleNotification(`${nome} removido do carrinho`);
     },
+    checkAndCompareStock() {
+      const items = this.shoppingCart.filter(
+        ({ id }) => this.product.id === id
+      );
+
+      this.product.estoque -= items.length;
+    },
     checkLocalStorage() {
       const { shoppingCart } = window.localStorage;
       if (shoppingCart) {
@@ -86,6 +93,8 @@ const vm = new Vue({
 
       document.title = title || "Techno";
       history.pushState(null, null, `#${hash}`);
+
+      if (this.product) this.checkAndCompareStock();
     },
     shoppingCart() {
       window.localStorage.shoppingCart = JSON.stringify(this.shoppingCart);
