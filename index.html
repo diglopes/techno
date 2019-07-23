@@ -17,13 +17,7 @@
 
       <header class="header">
         <img src="./assets/techno.svg" alt="Techno" class="logo">
-        <div class="shopping_cart">{{shoppingCartOverall | currencySymbol}} | {{shoppingCart.length}}</div>
-        <ul>
-          <li v-for="(item, index) in shoppingCart">
-            <p>{{item.nome}}</p>
-            <button @click="removeItemFromCart(index, item.nome)">X</button>
-          </li>
-        </ul>
+        <div class="shopping_cart" @click="showShoppingCart = true">{{shoppingCartOverall | currencySymbol}} | {{shoppingCart.length}}</div>      
       </header>
       
 
@@ -63,6 +57,25 @@
               </li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      <section class="modal_check-out" :class="{active: showShoppingCart}" @click="closeModalCart">
+        <div class="check-out_container">
+          <button class="modal_close" @click="showShoppingCart = false">X</button>
+          <h2 class="check-out_title">Carrinho</h2>
+          <div v-if="shoppingCartOverall">
+            <ul class="check-out_list">
+              <li v-for="(item, index) in shoppingCart" class="check-out_item">
+                <p>{{item.nome}}</p>
+                <p class="check-out_price">{{item.preco | currencySymbol}}</p>
+                <button class="check-out_remove" @click="removeItemFromCart(index, item.nome)">X</button>
+              </li>
+            </ul>
+            <p class="check-out_total">{{shoppingCartOverall | currencySymbol}}</p>
+            <button class="check-out_buy">Finalizar Compra</button>
+          </div>
+          <p v-else>O carrinho está vazio.</p>
         </div>
       </section>
 

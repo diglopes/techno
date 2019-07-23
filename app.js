@@ -4,6 +4,7 @@ const vm = new Vue({
     products: [],
     product: false,
     shoppingCart: [],
+    showShoppingCart: false,
     notificationMessage: "",
     notificationActive: false
   },
@@ -53,6 +54,9 @@ const vm = new Vue({
       setTimeout(() => {
         this.notificationActive = false;
       }, 1200);
+    },
+    closeModalCart({ target, currentTarget }) {
+      if (target === currentTarget) this.showShoppingCart = false;
     }
   },
   filters: {
